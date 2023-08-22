@@ -33,4 +33,4 @@ def purolator(tracking):
     soup = BeautifulSoup(driver.page_source, 'html.parser')
 
     for delivery_date in soup.find_all("p", {"class": "receivedby"}, True):
-        print (delivery_date.text)
+        return (delivery_date.text)
