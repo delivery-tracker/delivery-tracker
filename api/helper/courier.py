@@ -27,4 +27,10 @@ def canada_post(tracking):
         return (delivery_date.text)
 
 def purolator(tracking):
-    pass
+    driver = uc.Chrome(headless=True)
+    driver.get(f"https://www.purolator.com/en/shipping/tracker?pin={tracking}")
+    time.sleep(10)
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
+
+    for delivery_date in soup.find_all("p", {"class": "receivedby"}, True):
+        print (delivery_date.text)
